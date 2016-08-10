@@ -1,0 +1,82 @@
+<ion-view title="" hide-back-button="true" id="page2" class=" ">
+    <ion-content padding="true" class="has-header">    	    	
+    </ion-content>    
+    <ion-pane>
+			<ion-content ng-controller="dashboardCtrl">
+				<div class="spacer " style="width: 300px; height: 10px;"></div>
+				<ion-list id="signIn-list2" class=" ">
+		            <label class="item item-input card" id="dashboard-input10" style="border-radius:10px 10px 10px 10px;width:90%;">
+	                    <span class="input-label" style="font-weight:500;font-size:15px;text-align:left;">Project ID</span>
+	                    <input type="text" placeholder="">
+	                </label>
+	                <div class="spacer " style="width: 100%;"></div>
+	                <label class="item item-select card" id="projectList-select1" style="border-radius:10px 10px 10px 10px;width:90%;">
+			            <span class="input-label" style="font-weight:500;font-size:15px;text-align:left;">Project</span>
+			            <select style="font-weight:500;font-size:15px;width:90%;">
+			            	<option>Select</option>
+			                <option>Non-Plastic Dispute</option>
+			                <option>Direct Debit Dispute</option>
+			                <option>One Click</option>
+			                <option>Change of Address</option>
+			                <option>Repayment</option>
+			                <option>BACKS</option>
+			                <option>Breument</option>
+			                <option>Account Closure</option>
+			            </select>
+			        </label>	                
+	            </ion-list>
+				<div class="card" style="width:90%;">
+    				<div class="item item-divider">
+		            	Effort Extended Stats
+		          	</div>
+	          		<div class="item item-text-wrap">
+    					<span class="col button" style="font-size:40px;border-radius:0px 0px 0px 0px;">{{effortExtended[0].value}}</span>    					
+    					<span class="col button" style="font-size:15px;border-radius:0px 0px 0px 0px;">{{effortExtended[0].name}}</span>
+    				</div>
+		        </div>
+		        <div class="card" style="width:90%;">
+    				<div class="item item-divider">
+		            	Effort Extended Stats
+		          	</div>
+	          		<div class="item item-text-wrap">
+    					<span class="col button" style="font-size:40px;border-radius:0px 0px 0px 0px;">{{effortExtended[1].value}}</span>    					
+    					<span class="col button" style="font-size:15px;border-radius:0px 0px 0px 0px;">{{effortExtended[1].name}}</span>
+    				</div>
+		        </div>
+		        <div class="card" style="width:90%;">
+    				<div class="item item-divider">
+		            	Effort Extended Stats
+		          	</div>
+	          		<div class="item item-text-wrap">
+    					<span class="col button" style="font-size:40px;border-radius:0px 0px 0px 0px;">{{effortExtended[2].value}}</span>    					
+    					<span class="col button" style="font-size:15px;border-radius:0px 0px 0px 0px;">{{effortExtended[2].name}}</span>
+    				</div>
+		        </div>
+		        <div class="card" style="width:90%;">
+		          <div class="item item-divider">
+		          	Spent Effort Date		              
+		          </div>
+		          <div class="item item-text-wrap">
+		              <canvas id="bar" class="chart chart-bar" chart-data="effortDateData" chart-labels="effortDateLabel" legend="effortDateSeries" chart-series="effortDateSeries" chart-options="{showTooltips: true}"></canvas>		              
+		          </div>
+		        </div>
+		        <div class="card" style="width:90%;">
+		          <div class="item item-divider">
+		          	Burndown		              
+		          </div>
+		          <div class="item item-text-wrap">
+		              <canvas id="line" class="chart chart-line" chart-data="burndownData" chart-labels="burndownLabel" legend="burndownSeries" chart-series="burndownSeries" chart-options="{showTooltips: true}"></canvas>
+		          </div>
+		        </div>
+		        <div class="card" style="width:90%;">
+		          <div class="item item-divider">
+		          	Spent Effort Extended		              
+		          </div>
+		          <div class="item item-text-wrap">
+		              <canvas id="bar" class="chart chart-bar" chart-data="" chart-labels="" legend="" chart-series="" chart-options="{showTooltips: true}"></canvas>		              
+		          </div>
+		        </div>
+		        				        		        
+		    </ion-content>
+		</ion-pane>
+</ion-view>

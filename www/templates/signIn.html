@@ -1,0 +1,21 @@
+<ion-view title="Sign In" hide-nav-bar="true" hide-back-button="true" id="page6" class=" ">
+    <ion-content padding="true" class="manual-ios-statusbar-padding">
+        <form id="signIn-form2" class="list ">
+            <button id="signIn-button6" style="font-weight:600;font-size:25px;text-align:left;border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block ">Sign In</button>
+            <div class="spacer" style="width: 300px; height: 10px;"></div>
+            <ion-list id="signIn-list2" class=" ">
+                <label class="item item-input " id="signIn-input10">
+                    <span class="input-label">Email Id</span>
+                    <input type="text" placeholder="" ng-model="data.emailid">
+                </label>
+                <label class="item item-input " id="signIn-input11">
+                    <span class="input-label">Password</span>
+                    <input type="password" placeholder="" ng-model="data.password">
+                </label>
+            </ion-list>
+            <div class="spacer" style="width: 300px; height: 15px;"></div>
+            <a id="signIn-button4" style="font-weight:600;font-size:20px;border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block " ui-sref="tabsController.dashboard" ng-click="">Log in</a>
+            <a ui-sref="signUp" id="signIn-button5" class=" button button-positive  button-block button-clear ">Or create an account</a>
+        </form>
+    </ion-content>
+</ion-view>
