@@ -9,6 +9,36 @@ angular.module('app.services', [])
 .constant("baseURL","/psd2api/")
 
 //About Service
+//Sign in Service
+.service('signInData', function($state,$http, $q,$ionicPopup,$ionicLoading) {
+    this.getLoginAuthenticated = function(authTokenForLogin){
+       return $q(function(resolve, reject) {
+        var req = {
+            url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/user?id=02689A',
+            method:'GET',
+            headers : {
+              'Authorization' : 'Basic '+authTokenForLogin
+            }
+        }
+        $http(req)
+          .then(function(loginData) {
+            console.log(loginData.data.response); 
+            $state.go('tabsController.dashboard');           
+            // function to retrive the response
+            if (loginData.status == 200) {
+              resolve(loginData);
+            } else {
+              reject('Login Failed!');
+            }
+          },
+          function(err) {
+            reject(err);
+          });        
+      });
+    };
+})
+
+//ChartData Service
 .service('chartData', function($state,$http, $q,$ionicPopup,$ionicLoading) {
       
     this.getEffortExtended = function() {
@@ -109,17 +139,18 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getSpentEffortExtended = function(){
+    this.getProductivityDate = function(){
       return $q(function(resolve, reject) {
         var reqDate = {
-            url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/spentEffort/extendedStats',
+            url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/productivity/dateHistogram',
             method:'GET',
             headers : {
               'Accept' : 'application/json',
               'Content-Type':'application/json', 
-              'Authorization' : 'Basic bWFuc2kuYmhpc2VAYmFyY2xheXMuY29tOnBhc3N3b3JkMDE=',                                        
-              'fromDate' : '2015-06-01T00:00:00.000+0530', 
-              'toDate' : '2016-07-15T00:00:00.000+0530'
+              'Authorization' : 'Basic dGFubWF5LmFtYnJlQGluLmlibS5jb206cGFzc3dvcmQwMQ==',                                        
+              'fromDate' : '2016-01-01T00:00:00.000+0530', 
+              'toDate' : '2016-04-12T00:00:00.000+0530',
+              'interval' : '1w'
             },
             params: {                    
                       projectId: 'CI002',
@@ -127,11 +158,77 @@ angular.module('app.services', [])
                   }
         }
         $http(reqDate)
-          .then(function(getSpentEffort) {
-            console.log(getSpentEffort);            
+          .then(function(getProdDate) {
+            console.log(getProdDate);            
             // function to retrive the response
-            if (getSpentEffort.status == 200) {
-              resolve(getSpentEffort.data.response);
+            if (getProdDate.status == 200) {
+              resolve(getProdDate.data.response);
+            } else {
+              reject('Update Expertise Failed!');
+            }
+          },
+          function(err) {
+            reject(err);
+          });
+      });
+    };
+    this.getQualityDate = function(){
+      return $q(function(resolve, reject) {
+        var reqDate = {
+            url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/quality/dateHistogram',
+            method:'GET',
+            headers : {
+              'Accept' : 'application/json',
+              'Content-Type':'application/json', 
+              'Authorization' : 'Basic dGFubWF5LmFtYnJlQGluLmlibS5jb206cGFzc3dvcmQwMQ==',                                        
+              'fromDate' : '2016-01-01T00:00:00.000+0530', 
+              'toDate' : '2016-04-12T00:00:00.000+0530',
+              'interval' : '1w'
+            },
+            params: {                    
+                      projectId: 'CI002',
+                      sprintId: 'CI0021'
+                  }
+        }
+        $http(reqDate)
+          .then(function(getQualityDate) {
+            console.log(getQualityDate);            
+            // function to retrive the response
+            if (getQualityDate.status == 200) {
+              resolve(getQualityDate.data.response);
+            } else {
+              reject('Update Expertise Failed!');
+            }
+          },
+          function(err) {
+            reject(err);
+          });
+      });
+    };
+    this.getTeamDate = function(){
+      return $q(function(resolve, reject) {
+        var reqDate = {
+            url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/team/dateHistogram',
+            method:'GET',
+            headers : {
+              'Accept' : 'application/json',
+              'Content-Type':'application/json', 
+              'Authorization' : 'Basic dGFubWF5LmFtYnJlQGluLmlibS5jb206cGFzc3dvcmQwMQ==',                                        
+              'fromDate' : '2016-01-01T00:00:00.000+0530', 
+              'toDate' : '2016-04-12T00:00:00.000+0530',
+              'interval' : '1w'
+            },
+            params: {                    
+                      projectId: 'CI002',
+                      sprintId: 'CI0021'
+                  }
+        }
+        $http(reqDate)
+          .then(function(getTeamDate) {
+            console.log(getTeamDate);            
+            // function to retrive the response
+            if (getTeamDate.status == 200) {
+              resolve(getTeamDate.data.response);
             } else {
               reject('Update Expertise Failed!');
             }

@@ -27,14 +27,14 @@
 	            </ion-list>
 				<div class="card" style="width:90%;">
     				<div class="item item-divider">
-		            	Effort Extended Stats
+		            	Total Spent Effort
 		          	</div>
 	          		<div class="item item-text-wrap">
     					<span class="col button" style="font-size:40px;border-radius:0px 0px 0px 0px;">{{effortExtended[0].value}}</span>    					
-    					<span class="col button" style="font-size:15px;border-radius:0px 0px 0px 0px;">{{effortExtended[0].name}}</span>
+    					<span class="col button" style="font-size:15px;border-radius:0px 0px 0px 0px;">Hrs</span>
     				</div>
 		        </div>
-		        <div class="card" style="width:90%;">
+		        <!-- <div class="card" style="width:90%;">
     				<div class="item item-divider">
 		            	Effort Extended Stats
 		          	</div>
@@ -42,19 +42,19 @@
     					<span class="col button" style="font-size:40px;border-radius:0px 0px 0px 0px;">{{effortExtended[1].value}}</span>    					
     					<span class="col button" style="font-size:15px;border-radius:0px 0px 0px 0px;">{{effortExtended[1].name}}</span>
     				</div>
-		        </div>
+		        </div> -->
 		        <div class="card" style="width:90%;">
     				<div class="item item-divider">
-		            	Effort Extended Stats
+		            	Max Estimated Effort
 		          	</div>
 	          		<div class="item item-text-wrap">
     					<span class="col button" style="font-size:40px;border-radius:0px 0px 0px 0px;">{{effortExtended[2].value}}</span>    					
-    					<span class="col button" style="font-size:15px;border-radius:0px 0px 0px 0px;">{{effortExtended[2].name}}</span>
+    					<span class="col button" style="font-size:15px;border-radius:0px 0px 0px 0px;">Hrs</span>
     				</div>
 		        </div>
 		        <div class="card" style="width:90%;">
 		          <div class="item item-divider">
-		          	Spent Effort Date		              
+		          	Spent Effort Date Histogram		              
 		          </div>
 		          <div class="item item-text-wrap">
 		              <canvas id="bar" class="chart chart-bar" chart-data="effortDateData" chart-labels="effortDateLabel" legend="effortDateSeries" chart-series="effortDateSeries" chart-options="{showTooltips: true}"></canvas>		              
@@ -70,13 +70,28 @@
 		        </div>
 		        <div class="card" style="width:90%;">
 		          <div class="item item-divider">
-		          	Spent Effort Extended		              
+		          	Productivity Date Histogram		              
 		          </div>
 		          <div class="item item-text-wrap">
-		              <canvas id="bar" class="chart chart-bar" chart-data="" chart-labels="" legend="" chart-series="" chart-options="{showTooltips: true}"></canvas>		              
+		              <canvas id="bar" class="chart chart-bar" chart-data="productivityDateData" chart-labels="productivityDateLabel" legend="productivityDateSeries" chart-series="productivityDateSeries" chart-options="{showTooltips: true}"></canvas>		              
 		          </div>
 		        </div>
-		        				        		        
+		        <div class="card" style="width:90%;">
+		          <div class="item item-divider">
+		          	Quality Date Histogram		              
+		          </div>
+		          <div class="item item-text-wrap">
+		              <canvas id="bar" class="chart chart-bar" chart-data="qualityDateData" chart-labels="qualityDateLabel" legend="qualityDateSeries" chart-series="qualityDateSeries" chart-options="{showTooltips: true}"></canvas>
+		          </div>
+		        </div>
+		        <div class="card" style="width:90%;">
+		          <div class="item item-divider">
+		          	Team Date Histogram		              
+		          </div>
+		          <div class="item item-text-wrap">
+		              <canvas id="bar" class="chart chart-bar" chart-data="teamDateData" chart-labels="teamDateLabel" legend="teamDateSeries" chart-series="teamDateSeries" chart-options="{showTooltips: true}"></canvas>
+		          </div>
+		        </div>		        				        		        
 		    </ion-content>
 		</ion-pane>
 </ion-view>

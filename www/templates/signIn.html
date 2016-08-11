@@ -6,15 +6,16 @@
             <ion-list id="signIn-list2" class=" ">
                 <label class="item item-input " id="signIn-input10">
                     <span class="input-label">Email Id</span>
-                    <input type="text" placeholder="" ng-model="data.emailid">
+                    <input type="text" placeholder="" ng-model="emailid">
                 </label>
                 <label class="item item-input " id="signIn-input11">
                     <span class="input-label">Password</span>
-                    <input type="password" placeholder="" ng-model="data.password">
+                    <input type="password" placeholder="" ng-model="password">
                 </label>
             </ion-list>
             <div class="spacer" style="width: 300px; height: 15px;"></div>
-            <a id="signIn-button4" style="font-weight:600;font-size:20px;border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block " ui-sref="tabsController.dashboard" ng-click="">Log in</a>
+            <a id="signIn-button4" style="font-weight:600;font-size:20px;border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block " ng-click="Login(emailid,password)">Log in</a>
+            <div ng-show="submissionSuccess" style="width:50%;color:red;margin:0 auto;">Login failed. Please try again.</div>
             <a ui-sref="signUp" id="signIn-button5" class=" button button-positive  button-block button-clear ">Or create an account</a>
         </form>
     </ion-content>
