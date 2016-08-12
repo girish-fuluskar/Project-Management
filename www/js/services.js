@@ -22,7 +22,6 @@ angular.module('app.services', [])
         }
         $http(req)
           .then(function(loginData) {
-            console.log(loginData.data.response); 
             $state.go('tabsController.dashboard');           
             // function to retrive the response
             if (loginData.status == 200) {

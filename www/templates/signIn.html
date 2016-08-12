@@ -1,20 +1,27 @@
 <ion-view title="Sign In" hide-nav-bar="true" hide-back-button="true" id="page6" class=" ">
     <ion-content padding="true" class="manual-ios-statusbar-padding">
-        <form id="signIn-form2" class="list ">
+        <form id="signIn-form2" class="list" name="signinForm" novalidate ng-submit="signinForm.$valid && Login(emailid,password)">
             <button id="signIn-button6" style="font-weight:600;font-size:25px;text-align:left;border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block ">Sign In</button>
             <div class="spacer" style="width: 300px; height: 10px;"></div>
             <ion-list id="signIn-list2" class=" ">
-                <label class="item item-input " id="signIn-input10">
+                <label class="item item-input" name="email" id="signIn-input10">
                     <span class="input-label">Email Id</span>
-                    <input type="text" placeholder="" ng-model="emailid">
+                    <input type="text" placeholder="" required="" name="email" ng-model="emailid">
                 </label>
-                <label class="item item-input " id="signIn-input11">
+                 <div ng-show="signinForm.$submitted || signinForm.email.$touched">
+                  <div style="color:red;margin:5px;padding:5px;" ng-show="signinForm.email.$error.required">Please enter Email Id.</div>
+                  <div style="color:red;margin:5px;padding:5px;" ng-show="signinForm.email.$error.email">Please enter valid Email Id.</div>
+                </div>
+                <label class="item item-input " id="signIn-input11" name="password">
                     <span class="input-label">Password</span>
-                    <input type="password" placeholder="" ng-model="password">
+                    <input type="password" placeholder="" required="" name="password" ng-model="password">
                 </label>
+                 <div ng-show="signinForm.$submitted || signinForm.firstname.$touched">
+                  <div style="color:red;margin:5px;padding:5px;" ng-show="signinForm.password.$error.required">Please enter password.</div>
+                </div>
             </ion-list>
             <div class="spacer" style="width: 300px; height: 15px;"></div>
-            <a id="signIn-button4" style="font-weight:600;font-size:20px;border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block " ng-click="Login(emailid,password)">Log in</a>
+            <button class="button button-block button-positive" type="submit" id="signIn-button4" >Sign In</button>
             <div ng-show="submissionSuccess" style="width:50%;color:red;margin:0 auto;">Login failed. Please try again.</div>
             <a ui-sref="signUp" id="signIn-button5" class=" button button-positive  button-block button-clear ">Or create an account</a>
         </form>
