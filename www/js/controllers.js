@@ -299,10 +299,28 @@ angular.module('app.controllers', [])
 .controller('addNewSprintCtrl', function($scope) {
 
 })
-      
-.controller('signUpCtrl', function($scope) {
+ 
+ //Sign up controller     
+.controller('signUpCtrl', function($scope, signUpData) {
+   $scope.signup = function(data) { 
+    $scope.accountDtls = {"locked":false,
+                          "account": "BARCA"};
+    data.locked = false;
+    data.account = 'BARCA';
+    $scope.signUpDataDtls = data;
+     $scope.signup = signUpData.getSignedUp($scope.signUpDataDtls)
+      .then(function(signedUpData) {
+            $scope.signedUpData = signedUpData;
 
+      }, function(err) {   
+          /*var alertPopup = $ionicPopup.alert({
+              title: 'Login Failed!',
+              template: 'There was some problem with server.'
+          });*/
+      });
+   }
 })
+
 //Sign in Controller 
 .controller("signInCtrl", function($scope, signInData) {
  

@@ -9,6 +9,34 @@ angular.module('app.services', [])
 .constant("baseURL","/psd2api/")
 
 //About Service
+//Sign Up Data
+.service('signUpData', function($state,$http, $q,$ionicPopup,$ionicLoading) {
+    this.getSignedUp = function(signUpDataDtls){
+       return $q(function(resolve, reject) {
+        var req = {
+            url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/signup',
+            method:'POST',
+            headers : {
+              'Content-Type':'application/json'
+            },
+            data: signUpDataDtls
+        }
+        $http(req)
+          .then(function(signedUpData) {
+            $state.go('tabsController.dashboard');           
+            // function to retrive the response
+            if (signedUpData.status == 200) {
+              resolve(signedUpData);
+            } else {
+              reject('Sign Up Failed!');
+            }
+          },
+          function(err) {
+            reject(err);
+          });        
+      });
+    };
+})
 //Sign in Service
 .service('signInData', function($state,$http, $q,$ionicPopup,$ionicLoading) {
     this.getLoginAuthenticated = function(authTokenForLogin){
@@ -22,7 +50,6 @@ angular.module('app.services', [])
         }
         $http(req)
           .then(function(loginData) {
-            console.log(loginData.data.response); 
             $state.go('tabsController.dashboard');           
             // function to retrive the response
             if (loginData.status == 200) {
