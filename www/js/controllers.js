@@ -1,7 +1,6 @@
 angular.module('app.controllers', [])
      
-.controller('dashboardCtrl', function($scope, chartData) { 
-
+.controller('dashboardCtrl', function($scope, chartData) {
   //Effort Extended chart 
   $scope.effortExtended = chartData.getEffortExtended()
   .then(function(effortExtendedData) {
