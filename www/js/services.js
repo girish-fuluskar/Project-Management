@@ -135,7 +135,7 @@ angular.module('app.services', [])
           });
       });
     };    
-    this.getBurndownData = function(authToken){
+    this.getBurndownData = function(){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/effort/burndown',
@@ -168,7 +168,7 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getProductivityDate = function(authToken){
+    this.getProductivityDate = function(){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/productivity/dateHistogram',
@@ -201,7 +201,7 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getQualityDate = function(authToken){
+    this.getQualityDate = function(){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/quality/dateHistogram',
@@ -234,7 +234,7 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getTeamDate = function(authToken){
+    this.getTeamDate = function(){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/team/dateHistogram',
@@ -258,6 +258,32 @@ angular.module('app.services', [])
             // function to retrive the response
             if (getTeamDate.status == 200) {
               resolve(getTeamDate.data.response);
+            } else {
+              reject('Update Expertise Failed!');
+            }
+          },
+          function(err) {
+            reject(err);
+          });
+      });
+    };
+    this.getProjects = function(){
+      return $q(function(resolve, reject) {
+        var reqDate = {
+            url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/projects',
+            method:'GET',
+            headers : {
+              'Accept' : 'application/json',
+              'Content-Type':'application/json', 
+              'Authorization' : 'Basic ' + token
+            }
+        }
+        $http(reqDate)
+          .then(function(getProjectList) {
+            console.log(getProjectList);            
+            // function to retrive the response
+            if (getProjectList.status == 200) {
+              resolve(getProjectList.data.response);
             } else {
               reject('Update Expertise Failed!');
             }

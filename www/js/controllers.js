@@ -172,6 +172,16 @@ angular.module('app.controllers', [])
         template: 'There was some problem with server.'
     });
   });
+  //Project Name and Id List  
+  $scope.projectList = chartData.getProjects()
+    .then(function(projectLst){
+     $scope.projectLst  = projectLst;
+    },function(err){
+      var alertPopup = $ionicPopup.alert({
+        title: 'Search Failed!',
+        template: 'There was some problem with server.'
+    });
+  });
 
   //Globals
     $scope.myChartOptions = {

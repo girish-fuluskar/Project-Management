@@ -31,11 +31,11 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('tabsController.updates', {
+  .state('tabsController.userDashboard', {
     url: '/updates',
     views: {
       'tab3': {
-        templateUrl: 'templates/updates.html',
+        templateUrl: 'templates/userDashboard.html',
         controller: 'updatesCtrl'
       }
     }
