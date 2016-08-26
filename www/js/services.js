@@ -23,7 +23,7 @@ angular.module('app.services', [])
         }
         $http(req)
           .then(function(signedUpData) {
-            $state.go('tabsController.dashboard');           
+            $state.go('tabsController.dashboard');
             // function to retrive the response
             if (signedUpData.status == 200) {
               resolve(signedUpData);
@@ -47,12 +47,14 @@ angular.module('app.services', [])
             headers : {
               'Authorization' : 'Basic '+authTokenForLogin
             }
+            
         }
         $http(req)
           .then(function(loginData) {
             $state.go('tabsController.dashboard');           
             // function to retrive the response
             if (loginData.status == 200) {
+              window.localStorage.setItem('authToken', authTokenForLogin);
               resolve(loginData);
             } else {
               reject('Login Failed!');
@@ -67,7 +69,7 @@ angular.module('app.services', [])
 
 //ChartData Service
 .service('chartData', function($state,$http, $q,$ionicPopup,$ionicLoading) {
-      
+    var token = window.localStorage.getItem('authToken');  
     this.getEffortExtended = function() {
       return $q(function(resolve, reject) {
         var req = {
@@ -76,7 +78,7 @@ angular.module('app.services', [])
             headers : {
               'Accept' : 'application/json',
               'Content-Type':'application/json', 
-              'Authorization' : 'Basic dGFubWF5LmFtYnJlQGluLmlibS5jb206cGFzc3dvcmQwMQ==',                                        
+              'Authorization' : 'Basic ' + token,                                        
               'fromDate' : '2016-01-01T00:00:00.000+0530', 
               'toDate' : '2016-07-15T00:00:00.000+0530'
             },
@@ -108,7 +110,7 @@ angular.module('app.services', [])
             headers : {
               'Accept' : 'application/json',
               'Content-Type':'application/json', 
-              'Authorization' : 'Basic dGFubWF5LmFtYnJlQGluLmlibS5jb206cGFzc3dvcmQwMQ==',                                        
+              'Authorization' : 'Basic ' + token,                                        
               'fromDate' : '2016-01-01T00:00:00.000+0530', 
               'toDate' : '2016-03-05T00:00:00.000+0530',
               'interval' : '1w'
@@ -133,7 +135,7 @@ angular.module('app.services', [])
           });
       });
     };    
-    this.getBurndownData = function(){
+    this.getBurndownData = function(authToken){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/effort/burndown',
@@ -141,7 +143,7 @@ angular.module('app.services', [])
             headers : {
               'Accept' : 'application/json',
               'Content-Type':'application/json', 
-              'Authorization' : 'Basic dGFubWF5LmFtYnJlQGluLmlibS5jb206cGFzc3dvcmQwMQ==',                                        
+              'Authorization' : 'Basic ' + token,                                        
               'fromDate' : '2016-01-01T00:00:00.000+0530', 
               'toDate' : '2016-04-12T00:00:00.000+0530',
               'interval' : '1w'
@@ -166,7 +168,7 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getProductivityDate = function(){
+    this.getProductivityDate = function(authToken){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/productivity/dateHistogram',
@@ -174,7 +176,7 @@ angular.module('app.services', [])
             headers : {
               'Accept' : 'application/json',
               'Content-Type':'application/json', 
-              'Authorization' : 'Basic dGFubWF5LmFtYnJlQGluLmlibS5jb206cGFzc3dvcmQwMQ==',                                        
+              'Authorization' : 'Basic ' + token,                                        
               'fromDate' : '2016-01-01T00:00:00.000+0530', 
               'toDate' : '2016-04-12T00:00:00.000+0530',
               'interval' : '1w'
@@ -199,7 +201,7 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getQualityDate = function(){
+    this.getQualityDate = function(authToken){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/quality/dateHistogram',
@@ -207,7 +209,7 @@ angular.module('app.services', [])
             headers : {
               'Accept' : 'application/json',
               'Content-Type':'application/json', 
-              'Authorization' : 'Basic dGFubWF5LmFtYnJlQGluLmlibS5jb206cGFzc3dvcmQwMQ==',                                        
+              'Authorization' : 'Basic ' + token,                                        
               'fromDate' : '2016-01-01T00:00:00.000+0530', 
               'toDate' : '2016-04-12T00:00:00.000+0530',
               'interval' : '1w'
@@ -232,7 +234,7 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getTeamDate = function(){
+    this.getTeamDate = function(authToken){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/team/dateHistogram',
@@ -240,7 +242,7 @@ angular.module('app.services', [])
             headers : {
               'Accept' : 'application/json',
               'Content-Type':'application/json', 
-              'Authorization' : 'Basic dGFubWF5LmFtYnJlQGluLmlibS5jb206cGFzc3dvcmQwMQ==',                                        
+              'Authorization' : 'Basic ' + token,                                        
               'fromDate' : '2016-01-01T00:00:00.000+0530', 
               'toDate' : '2016-04-12T00:00:00.000+0530',
               'interval' : '1w'
