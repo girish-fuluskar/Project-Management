@@ -6,8 +6,13 @@ angular.module('app.controllers', [])
     $scope.allCharts = true;
   }
 
+  $scope.setProjectValue = function(projectSelect){
+    $scope.projectId = projectSelect;
+    console.log($scope.projectId);
+  }
+
   //Effort Extended chart 
-  $scope.effortExtended = chartData.getEffortExtended()
+  $scope.effortExtended = chartData.getEffortExtended($scope.projectId)
   .then(function(effortExtendedData) {
         $scope.effortExtended = effortExtendedData;
         console.log($scope.effortExtended);
@@ -19,7 +24,7 @@ angular.module('app.controllers', [])
   });
 
   //Spent Effort Date chart
-  $scope.effortDate = chartData.getEffortDate()
+  $scope.effortDate = chartData.getEffortDate($scope.projectId)
   .then(function(effortdata){
     var effortDateLabel = [];
     var effortDateSeries = [];
@@ -50,7 +55,7 @@ angular.module('app.controllers', [])
     });
   });
   //Burndown chart
-  $scope.burndownData = chartData.getBurndownData()
+  $scope.burndownData = chartData.getBurndownData($scope.projectId)
     .then(function(burndowndata){
       var burndownLabel = [];
       var burndownSeries = [];
@@ -80,7 +85,7 @@ angular.module('app.controllers', [])
     });
   });
   // Productivity Date chart   
-  $scope.productivityDate = chartData.getProductivityDate()
+  $scope.productivityDate = chartData.getProductivityDate($scope.projectId)
     .then(function(productivityDate){
       var productivityDateLabel = [];
       var productivityDateSeries = [];
@@ -111,7 +116,7 @@ angular.module('app.controllers', [])
     });
   });
   // Quality Date chart   
-  $scope.qualityDate = chartData.getQualityDate()
+  $scope.qualityDate = chartData.getQualityDate($scope.projectId)
     .then(function(qualityDate){
       var qualityDateLabel = [];
       var qualityDateSeries = [];
@@ -142,7 +147,7 @@ angular.module('app.controllers', [])
     });
   });
   // Team Date chart   
-  $scope.teamDate = chartData.getTeamDate()
+  $scope.teamDate = chartData.getTeamDate($scope.projectId)
     .then(function(teamDate){
       var teamDateLabel = [];
       var teamDateSeries = [];

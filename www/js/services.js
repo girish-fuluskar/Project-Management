@@ -70,7 +70,7 @@ angular.module('app.services', [])
 //ChartData Service
 .service('chartData', function($state,$http, $q,$ionicPopup,$ionicLoading) {
     var token = window.localStorage.getItem('authToken');  
-    this.getEffortExtended = function() {
+    this.getEffortExtended = function(projectId) {
       return $q(function(resolve, reject) {
         var req = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/effort/extendedStats',
@@ -83,7 +83,7 @@ angular.module('app.services', [])
               'toDate' : '2016-07-15T00:00:00.000+0530'
             },
             params: {                    
-                      projectId: 'CI002',
+                      projectId: projectId,
                       sprintId: 'CI0021'
                   }
         }
@@ -102,7 +102,7 @@ angular.module('app.services', [])
           });        
       });
     };
-    this.getEffortDate = function(){
+    this.getEffortDate = function(projectId){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/spentEffort/dateHistogram',
@@ -116,7 +116,7 @@ angular.module('app.services', [])
               'interval' : '1w'
             },
             params: {                    
-                      projectId: 'CI002',
+                      projectId: projectId,
                       sprintId: 'CI0021'
                   }
         }
@@ -135,7 +135,7 @@ angular.module('app.services', [])
           });
       });
     };    
-    this.getBurndownData = function(){
+    this.getBurndownData = function(projectId){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/effort/burndown',
@@ -149,7 +149,7 @@ angular.module('app.services', [])
               'interval' : '1w'
             },
             params: {                    
-                      projectId: 'CI002',
+                      projectId: projectId,
                       sprintId: 'CI0021'
                   }
         }
@@ -168,7 +168,7 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getProductivityDate = function(){
+    this.getProductivityDate = function(projectId){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/productivity/dateHistogram',
@@ -182,7 +182,7 @@ angular.module('app.services', [])
               'interval' : '1w'
             },
             params: {                    
-                      projectId: 'CI002',
+                      projectId: projectId,
                       sprintId: 'CI0021'
                   }
         }
@@ -201,7 +201,7 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getQualityDate = function(){
+    this.getQualityDate = function(projectId){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/quality/dateHistogram',
@@ -215,7 +215,7 @@ angular.module('app.services', [])
               'interval' : '1w'
             },
             params: {                    
-                      projectId: 'CI002',
+                      projectId: projectId,
                       sprintId: 'CI0021'
                   }
         }
@@ -234,7 +234,7 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getTeamDate = function(){
+    this.getTeamDate = function(projectId){
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/team/dateHistogram',
@@ -248,7 +248,7 @@ angular.module('app.services', [])
               'interval' : '1w'
             },
             params: {                    
-                      projectId: 'CI002',
+                      projectId: projectId,
                       sprintId: 'CI0021'
                   }
         }

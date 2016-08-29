@@ -12,7 +12,7 @@
 	                <div class="spacer " style="width: 100%;"></div>
 	                <label class="item item-select card" id="projectList-select1" style="border-radius:10px 10px 10px 10px;width:90%;">
 			            <span class="input-label" style="font-weight:500;font-size:15px;text-align:left;">Project</span>
-			            <select style="font-weight:500;font-size:15px;width:90%;">
+			            <select style="font-weight:500;font-size:15px;width:90%;" ng-model="projectSelect" ng-change="setProjectValue(projectSelect)">
 			            	<option ng-repeat="lst in projectLst" value="{{lst.id}}">{{lst.name}}</option>
 			            </select>
 			        </label>
