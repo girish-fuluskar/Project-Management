@@ -6,8 +6,8 @@
 				<div class="spacer " style="width: 300px; height: 10px;"></div>
 				<ion-list id="signIn-list2" class=" ">
 		            <label class="item item-input card" id="dashboard-input10" style="border-radius:10px 10px 10px 10px;width:90%;">
-	                    <span class="input-label" style="font-weight:500;font-size:15px;text-align:left;">Project ID</span>
-	                    <input type="text" placeholder="">
+	                    <span class="input-label" style="font-weight:500;font-size:15px;text-align:left;">Sprint</span>
+	                    <input type="text" placeholder="" ng-model="sprintNo">
 	                </label>
 	                <div class="spacer " style="width: 100%;"></div>
 	                <label class="item item-select card" id="projectList-select1" style="border-radius:10px 10px 10px 10px;width:90%;">
@@ -16,7 +16,7 @@
 			            	<option ng-repeat="lst in projectLst" value="{{lst.id}}">{{lst.name}}</option>
 			            </select>
 			        </label>
-			        <button class="button button-block button-positive" ng-click="AllChrts(projectSelect)" type="submit" id="submit4">Submit</button>	                
+			        <button class="button button-block button-positive" ng-click="AllChrts(sprintNo, projectSelect)" type="submit" id="submit4">Submit</button>	                
 	            </ion-list>
 	            <div id="chartSection" class="animate-show" ng-show="allCharts">
 					<div class="card" style="width:90%;">
@@ -55,7 +55,7 @@
 			        </div>
 			        <div class="card" style="width:90%;">
 			          <div class="item item-divider">
-			          	Productivity Date Histogram		              
+			          	Productivity		              
 			          </div>
 			          <div class="item item-text-wrap">
 			              <canvas id="bar" class="chart chart-bar" chart-data="productivityDateData" chart-labels="productivityDateLabel" legend="productivityDateSeries" chart-series="productivityDateSeries" chart-options="{showTooltips: true}"></canvas>		              
@@ -63,7 +63,7 @@
 			        </div>
 			        <div class="card" style="width:90%;">
 			          <div class="item item-divider">
-			          	Quality Date Histogram		              
+			          	Quality		              
 			          </div>
 			          <div class="item item-text-wrap">
 			              <canvas id="bar" class="chart chart-bar" chart-data="qualityDateData" chart-labels="qualityDateLabel" legend="qualityDateSeries" chart-series="qualityDateSeries" chart-options="{showTooltips: true}"></canvas>
@@ -71,7 +71,7 @@
 			        </div>
 			        <div class="card" style="width:90%;">
 			          <div class="item item-divider">
-			          	Team Date Histogram		              
+			          	Team		              
 			          </div>
 			          <div class="item item-text-wrap">
 			              <canvas id="bar" class="chart chart-bar" chart-data="teamDateData" chart-labels="teamDateLabel" legend="teamDateSeries" chart-series="teamDateSeries" chart-options="{showTooltips: true}"></canvas>

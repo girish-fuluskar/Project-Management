@@ -70,7 +70,8 @@ angular.module('app.services', [])
 //ChartData Service
 .service('chartData', function($state,$http, $q,$ionicPopup,$ionicLoading) {
     var token = window.localStorage.getItem('authToken');  
-    this.getEffortExtended = function(projectId) {
+    this.getEffortExtended = function(sprintNo, projectId) {
+      var sprintId = projectId.concat(sprintNo);
       return $q(function(resolve, reject) {
         var req = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/effort/extendedStats',
@@ -84,7 +85,7 @@ angular.module('app.services', [])
             },
             params: {                    
                       projectId: projectId,
-                      sprintId: 'CI0021'
+                      sprintId: sprintId
                   }
         }
         $http(req)
@@ -102,7 +103,8 @@ angular.module('app.services', [])
           });        
       });
     };
-    this.getEffortDate = function(projectId){
+    this.getEffortDate = function(sprintNo, projectId){
+      var sprintId = projectId.concat(sprintNo);
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/spentEffort/dateHistogram',
@@ -117,7 +119,7 @@ angular.module('app.services', [])
             },
             params: {                    
                       projectId: projectId,
-                      sprintId: 'CI0021'
+                      sprintId: sprintId
                   }
         }
         $http(reqDate)
@@ -135,7 +137,8 @@ angular.module('app.services', [])
           });
       });
     };    
-    this.getBurndownData = function(projectId){
+    this.getBurndownData = function(sprintNo, projectId){
+      var sprintId = projectId.concat(sprintNo);
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/effort/burndown',
@@ -150,7 +153,7 @@ angular.module('app.services', [])
             },
             params: {                    
                       projectId: projectId,
-                      sprintId: 'CI0021'
+                      sprintId: sprintId
                   }
         }
         $http(reqDate)
@@ -168,7 +171,8 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getProductivityDate = function(projectId){
+    this.getProductivityDate = function(sprintNo, projectId){
+      var sprintId = projectId.concat(sprintNo);
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/productivity/dateHistogram',
@@ -183,7 +187,7 @@ angular.module('app.services', [])
             },
             params: {                    
                       projectId: projectId,
-                      sprintId: 'CI0021'
+                      sprintId: sprintId
                   }
         }
         $http(reqDate)
@@ -201,7 +205,8 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getQualityDate = function(projectId){
+    this.getQualityDate = function(sprintNo, projectId){
+      var sprintId = projectId.concat(sprintNo);
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/quality/dateHistogram',
@@ -216,7 +221,7 @@ angular.module('app.services', [])
             },
             params: {                    
                       projectId: projectId,
-                      sprintId: 'CI0021'
+                      sprintId: sprintId
                   }
         }
         $http(reqDate)
@@ -234,7 +239,8 @@ angular.module('app.services', [])
           });
       });
     };
-    this.getTeamDate = function(projectId){
+    this.getTeamDate = function(sprintNo, projectId){
+      var sprintId = projectId.concat(sprintNo);
       return $q(function(resolve, reject) {
         var reqDate = {
             url: 'http://inmbz2239.in.dst.ibm.com:8090/deliverydashboard/BARCA/UKAEDF/team/dateHistogram',
@@ -249,7 +255,7 @@ angular.module('app.services', [])
             },
             params: {                    
                       projectId: projectId,
-                      sprintId: 'CI0021'
+                      sprintId: sprintId
                   }
         }
         $http(reqDate)

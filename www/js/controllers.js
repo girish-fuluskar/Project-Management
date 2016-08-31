@@ -7,10 +7,10 @@ angular.module('app.controllers', [])
     console.log($scope.projectId);
   }
 
-  $scope.AllChrts = function(projectId){
+  $scope.AllChrts = function(sprintNo, projectId){
     $scope.allCharts = true;
     //Effort Extended chart 
-    $scope.effortExtended = chartData.getEffortExtended(projectId)
+    $scope.effortExtended = chartData.getEffortExtended(sprintNo, projectId)
     .then(function(effortExtendedData) {
           $scope.effortExtended = effortExtendedData;
           console.log($scope.effortExtended);
@@ -22,7 +22,7 @@ angular.module('app.controllers', [])
     });
 
     //Spent Effort Date chart
-    $scope.effortDate = chartData.getEffortDate(projectId)
+    $scope.effortDate = chartData.getEffortDate(sprintNo, projectId)
     .then(function(effortdata){
       var effortDateLabel = [];
       var effortDateSeries = [];
@@ -53,7 +53,7 @@ angular.module('app.controllers', [])
       });
     });
     //Burndown chart
-    $scope.burndownData = chartData.getBurndownData(projectId)
+    $scope.burndownData = chartData.getBurndownData(sprintNo, projectId)
       .then(function(burndowndata){
         var burndownLabel = [];
         var burndownSeries = [];
@@ -83,7 +83,7 @@ angular.module('app.controllers', [])
       });
     });
     // Productivity Date chart   
-    $scope.productivityDate = chartData.getProductivityDate(projectId)
+    $scope.productivityDate = chartData.getProductivityDate(sprintNo, projectId)
       .then(function(productivityDate){
         var productivityDateLabel = [];
         var productivityDateSeries = [];
@@ -114,7 +114,7 @@ angular.module('app.controllers', [])
       });
     });
     // Quality Date chart   
-    $scope.qualityDate = chartData.getQualityDate(projectId)
+    $scope.qualityDate = chartData.getQualityDate(sprintNo, projectId)
       .then(function(qualityDate){
         var qualityDateLabel = [];
         var qualityDateSeries = [];
@@ -145,7 +145,7 @@ angular.module('app.controllers', [])
       });
     });
     // Team Date chart   
-    $scope.teamDate = chartData.getTeamDate(projectId)
+    $scope.teamDate = chartData.getTeamDate(sprintNo, projectId)
       .then(function(teamDate){
         var teamDateLabel = [];
         var teamDateSeries = [];
