@@ -1,192 +1,193 @@
 angular.module('app.controllers', [])
      
 .controller('dashboardCtrl', function($scope, chartData) {
-  //$scope.allCharts = true;
-  $scope.charts = function (){
-    $scope.allCharts = true;
-  }
 
   $scope.setProjectValue = function(projectSelect){
     $scope.projectId = projectSelect;
     console.log($scope.projectId);
   }
 
-  //Effort Extended chart 
-  $scope.effortExtended = chartData.getEffortExtended($scope.projectId)
-  .then(function(effortExtendedData) {
-        $scope.effortExtended = effortExtendedData;
-        console.log($scope.effortExtended);
-  }, function(err) {            
-      var alertPopup = $ionicPopup.alert({
-          title: 'Search Failed!',
-          template: 'There was some problem with server.'
-      });
-  });
-
-  //Spent Effort Date chart
-  $scope.effortDate = chartData.getEffortDate($scope.projectId)
-  .then(function(effortdata){
-    var effortDateLabel = [];
-    var effortDateSeries = [];
-    var data1 = [];        
-    for(var i=0;i<effortdata[0].buckets.length;i++){
-      var a=[];
-      effortDateLabel.push(new Date(effortdata[0].buckets[i].key_as_string).toISOString().slice(0,10));
-      //loop for getting value with bucket                  
-      for(var j=0;j<effortdata[0].buckets[i].aggregations.length;j++){
-        a.push(effortdata[0].buckets[i].aggregations[j].value);                
-      }
-      data1.push(a);
-    }
-    //loop for names from bucket, which to take only once
-    for(var h=0;h<effortdata[0].buckets[h].aggregations.length;h++){
-      effortDateSeries.push(effortdata[0].buckets[h].aggregations[h].name);            
-    }
-    $scope.effortDateLabel = effortDateLabel;
-    $scope.effortDateSeries = effortDateSeries;         
-    var realignData = _.unzip(data1);    
-    $scope.effortDateData = realignData;
-    $scope.effortDate = effortdata;
-    console.log($scope.effortDate);
-  }, function(err){
-    var alertPopup = $ionicPopup.alert({
-        title: 'Search Failed!',
-        template: 'There was some problem with server.'
+  $scope.AllChrts = function(projectId){
+    $scope.allCharts = true;
+    //Effort Extended chart 
+    $scope.effortExtended = chartData.getEffortExtended(projectId)
+    .then(function(effortExtendedData) {
+          $scope.effortExtended = effortExtendedData;
+          console.log($scope.effortExtended);
+    }, function(err) {            
+        var alertPopup = $ionicPopup.alert({
+            title: 'Search Failed!',
+            template: 'There was some problem with server.'
+        });
     });
-  });
-  //Burndown chart
-  $scope.burndownData = chartData.getBurndownData($scope.projectId)
-    .then(function(burndowndata){
-      var burndownLabel = [];
-      var burndownSeries = [];
-      var data1 = [];
-      for(var i=0;i<burndowndata[0].buckets.length;i++){
+
+    //Spent Effort Date chart
+    $scope.effortDate = chartData.getEffortDate(projectId)
+    .then(function(effortdata){
+      var effortDateLabel = [];
+      var effortDateSeries = [];
+      var data1 = [];        
+      for(var i=0;i<effortdata[0].buckets.length;i++){
         var a=[];
-        burndownLabel.push(new Date(burndowndata[0].buckets[i].key_as_string).toISOString().slice(0,10));
+        effortDateLabel.push(new Date(effortdata[0].buckets[i].key_as_string).toISOString().slice(0,10));
         //loop for getting value with bucket                  
-        for(var j=0;j<burndowndata[0].buckets[i].aggregations.length;j++){
-          a.push(burndowndata[0].buckets[i].aggregations[j].value);                
+        for(var j=0;j<effortdata[0].buckets[i].aggregations.length;j++){
+          a.push(effortdata[0].buckets[i].aggregations[j].value);                
         }
         data1.push(a);
       }
       //loop for names from bucket, which to take only once
-      for(var h=0;h<burndowndata[0].buckets[h].aggregations.length;h++){
-        burndownSeries.push(burndowndata[0].buckets[h].aggregations[h].name);            
+      for(var h=0;h<effortdata[0].buckets[h].aggregations.length;h++){
+        effortDateSeries.push(effortdata[0].buckets[h].aggregations[h].name);            
       }
-      $scope.burndownLabel = burndownLabel;
-      $scope.burndownSeries = burndownSeries;         
-      var realignBurndownData = _.unzip(data1);    
-      $scope.burndownData = realignBurndownData;      
-      console.log($scope.burndowndata);
+      $scope.effortDateLabel = effortDateLabel;
+      $scope.effortDateSeries = effortDateSeries;         
+      var realignData = _.unzip(data1);    
+      $scope.effortDateData = realignData;
+      $scope.effortDate = effortdata;
+      console.log($scope.effortDate);
     }, function(err){
-    var alertPopup = $ionicPopup.alert({
-        title: 'Search Failed!',
-        template: 'There was some problem with server.'
-    });
-  });
-  // Productivity Date chart   
-  $scope.productivityDate = chartData.getProductivityDate($scope.projectId)
-    .then(function(productivityDate){
-      var productivityDateLabel = [];
-      var productivityDateSeries = [];
-      var productivityDateData1 = [];
-      for(var k=0;k<productivityDate[0].buckets.length;k++){
-        var b=[];
-        productivityDateLabel.push(new Date(productivityDate[0].buckets[k].key_as_string).toISOString().slice(0,10));
-
-        //loop for getting value with bucket                  
-        for(var j=0;j<productivityDate[0].buckets[k].aggregations.length;j++){
-          b.push(productivityDate[0].buckets[k].aggregations[j].value);                
-        }
-        productivityDateData1.push(b);        
-      }
-      //loop for names from bucket, which to take only once
-      for(var h=0;h<productivityDate[0].buckets[h].aggregations.length;h++){
-        productivityDateSeries.push(productivityDate[0].buckets[h].aggregations[h].name);            
-      }
-      $scope.productivityDateLabel = productivityDateLabel;
-      $scope.productivityDateSeries = productivityDateSeries;         
-      var realignProductivityDateData = _.unzip(productivityDateData1);    
-      $scope.productivityDateData = realignProductivityDateData;
-      console.log($scope.productivityDateData);
-    },function(err){
       var alertPopup = $ionicPopup.alert({
-        title: 'Search Failed!',
-        template: 'There was some problem with server.'
+          title: 'Search Failed!',
+          template: 'There was some problem with server.'
+      });
     });
-  });
-  // Quality Date chart   
-  $scope.qualityDate = chartData.getQualityDate($scope.projectId)
-    .then(function(qualityDate){
-      var qualityDateLabel = [];
-      var qualityDateSeries = [];
-      var qualityDateData1 = [];
-      for(var k=0;k<qualityDate[0].buckets.length;k++){
-        var b=[];
-        qualityDateLabel.push(new Date(qualityDate[0].buckets[k].key_as_string).toISOString().slice(0,10));
-
-        //loop for getting value with bucket                  
-        for(var j=0;j<qualityDate[0].buckets[k].aggregations.length;j++){
-          b.push(qualityDate[0].buckets[k].aggregations[j].value);                
+    //Burndown chart
+    $scope.burndownData = chartData.getBurndownData(projectId)
+      .then(function(burndowndata){
+        var burndownLabel = [];
+        var burndownSeries = [];
+        var data1 = [];
+        for(var i=0;i<burndowndata[0].buckets.length;i++){
+          var a=[];
+          burndownLabel.push(new Date(burndowndata[0].buckets[i].key_as_string).toISOString().slice(0,10));
+          //loop for getting value with bucket                  
+          for(var j=0;j<burndowndata[0].buckets[i].aggregations.length;j++){
+            a.push(burndowndata[0].buckets[i].aggregations[j].value);                
+          }
+          data1.push(a);
         }
-        qualityDateData1.push(b);        
-      }
-      //loop for names from bucket, which to take only once
-      for(var u=0;u<qualityDate[0].buckets[0].aggregations.length;u++){
-        qualityDateSeries.push(qualityDate[0].buckets[0].aggregations[u].name);            
-      }
-      $scope.qualityDateLabel = qualityDateLabel;
-      $scope.qualityDateSeries = qualityDateSeries;         
-      var realignQualityDateData = _.unzip(qualityDateData1);    
-      $scope.qualityDateData = realignQualityDateData;
-      console.log($scope.qualityyDateData);
-    },function(err){
-      var alertPopup = $ionicPopup.alert({
-        title: 'Search Failed!',
-        template: 'There was some problem with server.'
-    });
-  });
-  // Team Date chart   
-  $scope.teamDate = chartData.getTeamDate($scope.projectId)
-    .then(function(teamDate){
-      var teamDateLabel = [];
-      var teamDateSeries = [];
-      var teamDateData1 = [];
-      for(var k=0;k<teamDate[0].buckets.length;k++){
-        var b=[];
-        teamDateLabel.push(new Date(teamDate[0].buckets[k].key_as_string).toISOString().slice(0,10));
-
-        //loop for getting value with bucket                  
-        for(var j=0;j<teamDate[0].buckets[k].aggregations.length;j++){
-          b.push(teamDate[0].buckets[k].aggregations[j].value);                
+        //loop for names from bucket, which to take only once
+        for(var h=0;h<burndowndata[0].buckets[h].aggregations.length;h++){
+          burndownSeries.push(burndowndata[0].buckets[h].aggregations[h].name);            
         }
-        teamDateData1.push(b);        
-      }
-      //loop for names from bucket, which to take only once
-      for(var u=0;u<teamDate[0].buckets[0].aggregations.length;u++){
-        teamDateSeries.push(teamDate[0].buckets[0].aggregations[u].name);            
-      }
-      $scope.teamDateLabel = teamDateLabel;
-      $scope.teamDateSeries = teamDateSeries;         
-      var realignTeamDateData = _.unzip(teamDateData1);    
-      $scope.teamDateData = realignTeamDateData;
-      console.log($scope.teamDateData);
-    },function(err){
+        $scope.burndownLabel = burndownLabel;
+        $scope.burndownSeries = burndownSeries;         
+        var realignBurndownData = _.unzip(data1);    
+        $scope.burndownData = realignBurndownData;      
+        console.log($scope.burndowndata);
+      }, function(err){
       var alertPopup = $ionicPopup.alert({
-        title: 'Search Failed!',
-        template: 'There was some problem with server.'
+          title: 'Search Failed!',
+          template: 'There was some problem with server.'
+      });
     });
-  });
+    // Productivity Date chart   
+    $scope.productivityDate = chartData.getProductivityDate(projectId)
+      .then(function(productivityDate){
+        var productivityDateLabel = [];
+        var productivityDateSeries = [];
+        var productivityDateData1 = [];
+        for(var k=0;k<productivityDate[0].buckets.length;k++){
+          var b=[];
+          productivityDateLabel.push(new Date(productivityDate[0].buckets[k].key_as_string).toISOString().slice(0,10));
+
+          //loop for getting value with bucket                  
+          for(var j=0;j<productivityDate[0].buckets[k].aggregations.length;j++){
+            b.push(productivityDate[0].buckets[k].aggregations[j].value);                
+          }
+          productivityDateData1.push(b);        
+        }
+        //loop for names from bucket, which to take only once
+        for(var h=0;h<productivityDate[0].buckets[h].aggregations.length;h++){
+          productivityDateSeries.push(productivityDate[0].buckets[h].aggregations[h].name);            
+        }
+        $scope.productivityDateLabel = productivityDateLabel;
+        $scope.productivityDateSeries = productivityDateSeries;         
+        var realignProductivityDateData = _.unzip(productivityDateData1);    
+        $scope.productivityDateData = realignProductivityDateData;
+        console.log($scope.productivityDateData);
+      },function(err){
+        var alertPopup = $ionicPopup.alert({
+          title: 'Search Failed!',
+          template: 'There was some problem with server.'
+      });
+    });
+    // Quality Date chart   
+    $scope.qualityDate = chartData.getQualityDate(projectId)
+      .then(function(qualityDate){
+        var qualityDateLabel = [];
+        var qualityDateSeries = [];
+        var qualityDateData1 = [];
+        for(var k=0;k<qualityDate[0].buckets.length;k++){
+          var b=[];
+          qualityDateLabel.push(new Date(qualityDate[0].buckets[k].key_as_string).toISOString().slice(0,10));
+
+          //loop for getting value with bucket                  
+          for(var j=0;j<qualityDate[0].buckets[k].aggregations.length;j++){
+            b.push(qualityDate[0].buckets[k].aggregations[j].value);                
+          }
+          qualityDateData1.push(b);        
+        }
+        //loop for names from bucket, which to take only once
+        for(var u=0;u<qualityDate[0].buckets[0].aggregations.length;u++){
+          qualityDateSeries.push(qualityDate[0].buckets[0].aggregations[u].name);            
+        }
+        $scope.qualityDateLabel = qualityDateLabel;
+        $scope.qualityDateSeries = qualityDateSeries;         
+        var realignQualityDateData = _.unzip(qualityDateData1);    
+        $scope.qualityDateData = realignQualityDateData;
+        console.log($scope.qualityyDateData);
+      },function(err){
+        var alertPopup = $ionicPopup.alert({
+          title: 'Search Failed!',
+          template: 'There was some problem with server.'
+      });
+    });
+    // Team Date chart   
+    $scope.teamDate = chartData.getTeamDate(projectId)
+      .then(function(teamDate){
+        var teamDateLabel = [];
+        var teamDateSeries = [];
+        var teamDateData1 = [];
+        for(var k=0;k<teamDate[0].buckets.length;k++){
+          var b=[];
+          teamDateLabel.push(new Date(teamDate[0].buckets[k].key_as_string).toISOString().slice(0,10));
+
+          //loop for getting value with bucket                  
+          for(var j=0;j<teamDate[0].buckets[k].aggregations.length;j++){
+            b.push(teamDate[0].buckets[k].aggregations[j].value);                
+          }
+          teamDateData1.push(b);        
+        }
+        //loop for names from bucket, which to take only once
+        for(var u=0;u<teamDate[0].buckets[0].aggregations.length;u++){
+          teamDateSeries.push(teamDate[0].buckets[0].aggregations[u].name);            
+        }
+        $scope.teamDateLabel = teamDateLabel;
+        $scope.teamDateSeries = teamDateSeries;         
+        var realignTeamDateData = _.unzip(teamDateData1);    
+        $scope.teamDateData = realignTeamDateData;
+        console.log($scope.teamDateData);
+      },function(err){
+        var alertPopup = $ionicPopup.alert({
+          title: 'Search Failed!',
+          template: 'There was some problem with server.'
+      });
+    });
+  }
+
   //Project Name and Id List  
-  $scope.projectList = chartData.getProjects()
-    .then(function(projectLst){
-     $scope.projectLst  = projectLst;
-    },function(err){
-      var alertPopup = $ionicPopup.alert({
-        title: 'Search Failed!',
-        template: 'There was some problem with server.'
+    $scope.projectList = chartData.getProjects()
+      .then(function(projectLst){
+       $scope.projectLst  = projectLst;
+      },function(err){
+        var alertPopup = $ionicPopup.alert({
+          title: 'Search Failed!',
+          template: 'There was some problem with server.'
+      });
     });
-  });
+  
 
   //Globals
     $scope.myChartOptions = {

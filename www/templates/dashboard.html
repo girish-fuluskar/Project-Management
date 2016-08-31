@@ -12,11 +12,11 @@
 	                <div class="spacer " style="width: 100%;"></div>
 	                <label class="item item-select card" id="projectList-select1" style="border-radius:10px 10px 10px 10px;width:90%;">
 			            <span class="input-label" style="font-weight:500;font-size:15px;text-align:left;">Project</span>
-			            <select style="font-weight:500;font-size:15px;width:90%;" ng-model="projectSelect" ng-change="setProjectValue(projectSelect)">
+			            <select style="font-weight:500;font-size:15px;width:90%;" ng-model="projectSelect">
 			            	<option ng-repeat="lst in projectLst" value="{{lst.id}}">{{lst.name}}</option>
 			            </select>
 			        </label>
-			        <button class="button button-block button-positive" ng-click="charts()" type="submit" id="submit4">Submit</button>	                
+			        <button class="button button-block button-positive" ng-click="AllChrts(projectSelect)" type="submit" id="submit4">Submit</button>	                
 	            </ion-list>
 	            <div id="chartSection" class="animate-show" ng-show="allCharts">
 					<div class="card" style="width:90%;">
