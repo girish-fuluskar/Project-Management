@@ -308,11 +308,7 @@ angular.module('app.controllers', [])
         onAnimationComplete: function(){}
     }; 
 })
-   
-.controller('reportCtrl', function($scope) {
-
-})
-   
+ 
 .controller('updatesCtrl', function($scope) {
 
 })

@@ -21,18 +21,8 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('tabsController.report', {
-    url: '/report',
-    views: {
-      'tab2': {
-        templateUrl: 'templates/report.html',
-        controller: 'reportCtrl'
-      }
-    }
-  })
-
   .state('tabsController.userDashboard', {
-    url: '/updates',
+    url: '/userDashboard',
     views: {
       'tab3': {
         templateUrl: 'templates/userDashboard.html',
