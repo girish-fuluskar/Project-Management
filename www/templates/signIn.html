@@ -1,29 +1,32 @@
-<ion-view title="Sign In" hide-nav-bar="true" hide-back-button="true" id="page6" class=" ">
-    <ion-content padding="true" class="manual-ios-statusbar-padding">
+<ion-view title="Log In" hide-nav-bar="true" hide-back-button="true" id="page6" class=" ">
+    <ion-content scroll="false" padding="false" class="manual-ios-statusbar-padding">
+        <div>
+            <img style="display: block; margin-left: auto; margin-right: auto;" src="img/project-manager-roll.jpg" height="auto" width="100%">
+        </div>
+        <h3 style="color: rgb(26, 139, 171); font-weight: 300; text-align: center;" id="logIn-heading1">Log In</h3>        
         <form id="signIn-form2" class="list" name="signinForm" novalidate ng-submit="signinForm.$valid && Login(emailid,password)">
-            <button id="signIn-button6" style="font-weight:600;font-size:25px;text-align:left;border-radius:5px 5px 5px 5px;" class=" button button-positive  button-block ">Sign In</button>
             <div class="spacer" style="width: 300px; height: 10px;"></div>
             <ion-list id="signIn-list2" class=" ">
                 <label class="item item-input" name="email" id="signIn-input10">
-                    <span class="input-label">Email Id</span>
-                    <input type="text" placeholder="" required="" name="email" ng-model="emailid">
+                    <span class="input-label">Username</span>
+                    <input type="text" placeholder="Username" required="" name="email" ng-model="emailid">
                 </label>
                  <div ng-show="signinForm.$submitted || signinForm.email.$touched">
                   <div style="color:red;margin:5px;padding:5px;" ng-show="signinForm.email.$error.required">Please enter Email Id.</div>
                   <div style="color:red;margin:5px;padding:5px;" ng-show="signinForm.email.$error.email">Please enter valid Email Id.</div>
                 </div>
-                <label class="item item-input " id="signIn-input11" name="password">
+                <label class="item item-input" id="signIn-input11" name="password">
                     <span class="input-label">Password</span>
-                    <input type="password" placeholder="" required="" name="password" ng-model="password">
+                    <input type="password" placeholder="Password" required="" name="password" ng-model="password">
                 </label>
                  <div ng-show="signinForm.$submitted || signinForm.firstname.$touched">
                   <div style="color:red;margin:5px;padding:5px;" ng-show="signinForm.password.$error.required">Please enter password.</div>
                 </div>
             </ion-list>
-            <div class="spacer" style="width: 300px; height: 15px;"></div>
-            <button class="button button-block button-positive" type="submit" id="signIn-button4" >Sign In</button>
+            <div style="width: 300px; height: 15px;" class="spacer"></div>
+            <button class="button button-positive  button-block" style="font-weight:300;border-radius:10px 10px 10px 10px;" type="submit" id="signIn-button4" >Sign In</button>
             <div ng-show="submissionSuccess" style="width:50%;color:red;margin:0 auto;">Login failed. Please try again.</div>
-            <a ui-sref="signUp" id="signIn-button5" class=" button button-positive  button-block button-clear ">Or create an account</a>
+            <a ui-sref="signUp" id="signIn-button5" class="button button-light  button-block button-clear" style="font-weight:300;font-style:italic;color:#1A8BAB;border-radius:10px 10px 10px 10px;">Or create an account</a>
         </form>
     </ion-content>
 </ion-view>

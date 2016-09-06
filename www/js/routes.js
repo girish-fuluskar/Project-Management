@@ -56,6 +56,6 @@ angular.module('app.routes', [])
     controller: 'signInCtrl'
   })
 
-$urlRouterProvider.otherwise('/signup')  
+$urlRouterProvider.otherwise('/signin')  
 
 });

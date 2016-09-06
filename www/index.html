@@ -75,15 +75,21 @@
             </ion-nav-bar>
             <ion-nav-view></ion-nav-view>
         </ion-side-menu-content>
-        <ion-side-menu side="left" id="side-menu21">
+        <ion-side-menu style="background-color:#1A8BAB;" side="left" id="side-menu21">
             <ion-header-bar class="bar-stable">
                 <div class="title">Menu</div>
             </ion-header-bar>
-            <ion-content padding="false" class="side-menu-left has-header">
-                <div class="spacer" style="width: 300px; height: 10px;"></div>                
-                <ion-item padding="false" style="color: rgb(11, 152, 25);text-align:center;font-weight: 400; font-size: 20px; border-radius:10px 10px 10px 10px;" class="" menu-close="" ui-sref="signIn" id="menu-list-item1">Sign Out</ion-item>
-                <ion-item padding="false" style="color: rgb(11, 152, 25);text-align:center;font-weight: 400; font-size: 20px; border-radius:10px 10px 10px 10px;" class="" menu-close="" ui-sref="addNewSprint" id="menu-list-item1">Add New Sprint</ion-item>
-                <ion-item padding="false" style="color: rgb(11, 152, 25);text-align:center;font-weight: 400; font-size: 20px; border-radius:10px 10px 10px 10px;" class="" menu-close="" ui-sref="tabsController.dashboard" id="menu-list-item1">To Dashboard</ion-item>
+            <ion-content padding="true" class="side-menu-left has-header">
+                <div class="spacer" style="width: 300px; height: 10px;"></div>
+                <div data-componentid="button1" style="margin-right:-20px;">
+                    <a class="button button-assertive  button-full icon-left ion-power" style="left:-10px;font-weight:600;border-radius:10px 10px 10px 10px;" id="menu-button1" menu-close="" ui-sref="signIn">Sign Out</a>
+                </div>
+                <div data-componentid="button6" style="margin-right:-20px;">
+                    <a class="button button-stable  button-full icon-left ion-paintbrush" style="left:-10px;font-weight:600;border-radius:10px 10px 10px 10px;" id="menu-button6" menu-close="" ui-sref="addNewSprint">Add New Sprint</a>
+                </div>
+                <div data-componentid="button7" style="margin-right:-20px;">
+                    <a class="button button-stable  button-full icon-left ion-clipboard" style="left:-10px;font-weight:600;border-radius:10px 10px 10px 10px;" id="menu-button7" menu-close="" ui-sref="tabsController.dashboard">To Dashboard</a>
+                </div>
             </ion-content>
         </ion-side-menu>
     </ion-side-menus>
